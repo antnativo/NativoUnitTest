@@ -1,0 +1,22 @@
+{
+  "name": "NativoTesting",
+  "description": "Nativo Testing",
+  "main": "public/index.html",
+  "authors": [
+    "antnativo <acrawford@nativo.net>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "q": "^2.0.2",
+    "jquery": "^2.2.1"
+  }
+}

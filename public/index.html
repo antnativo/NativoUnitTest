@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>simple test</title>
+
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.22.0.css">
+    <script>
+
+        function returnFirstChar(str){
+            return str.charAt(0);
+        }
+    </script>
+    <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/qunit/qunit-1.22.0.js" type="text/javascript"></script>
+
+
+
+</head>
+<div id="qunit" style="width:100%; height:100%;"></div>
+<iframe src="" id="websites" width="100%" height="0%" style="position:absolute; bottom:0px;" scrolling="true"></iframe>
+    <script>
+        
+       var Nativo; 
+       !function(Nativo){
+           !function(UnitTest){
+               UnitTest.Init = function (init,assert){
+                                            if(init){
+                                                assert.equal(1,1);
+                                            }
+                                        };
+           }(Nativo.UnitTest || (Nativo.UnitTest ={}));
+       }(Nativo || (Nativo ={}));
+        
+       function TestjQueryVersion(init){
+            var deferred =  jQuery.Deferred();
+                QUnit.test("jQuery must return 1.7.2", function(assert){
+                    Nativo.UnitTest.Init(arguments.callee.arguments[0] || init || obj.init,assert);
+                    document.getElementById("websites").onload = function(e){
+                        assert.equal(document.getElementById("websites").contentWindow.jQuery.fn.jquery, "1.7.2");
+                        deferred.resolve("done");
+                    };  
+                    
+                     document.getElementById("websites").src = "/url/" + encodeURIComponent("http://www.fodors.com/cruises/news/photos/10-best-river-cruises-for-2015/");
+                    
+                  });
+             
+             return deferred.promise();
+            
+        }
+        
+        function TestjQueryVersion2(data){
+            var deferred =  jQuery.Deferred();
+            console.log(data);
+            
+                QUnit.test("jQuery must return 1.7.2 Number 2", function(assert){
+                    assert.equal(1,1);
+                    document.getElementById("websites").onload = function(e){
+                        console.log(document.getElementById("websites").contentWindow.querySelector);
+                        assert.equal(document.getElementById("websites").contentWindow.jQuery.fn.jquery, "1.7.2");
+                        deferred.resolve("done");
+                    };  
+                    
+                     document.getElementById("websites").src = "/url/" + encodeURIComponent("http://www.apple.com");
+                    
+                  });
+             
+             return deferred.promise();
+            
+        }
+            
+                
+         $.when(TestjQueryVersion(true)).then(TestjQueryVersion2);       
+        
+       
+        
+       
+        var log={};
+        function logThis(obj){
+            (log[obj.name]) ? log[obj.name].push(obj) : ( log[obj.name] = [], log[obj.name].push(obj));
+        }
+
+        QUnit.log(logThis);
+        QUnit.testDone(function(complete){
+            (typeof console != "undefined") ? console.log("Complete: ",complete) :"";
+        });
+        QUnit.done(function(total){
+            (typeof console != "undefined") ? console.log("Total: ",total) :"";
+            (typeof console != "undefined")  ? console.log("Log: ",log) :"";
+
+        });
+      
+
+
+    </script>
+</body>
+</html>
