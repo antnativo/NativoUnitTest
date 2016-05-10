@@ -1,0 +1,48 @@
+
+.ntv-gallery-footer {
+    width: 100%;
+    height: auto;
+	font-family: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.ntv-gallery-footer table {
+    table-layout: fixed
+}
+
+.ntv-gallery-footer table td {
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.ntv-gallery-headline {
+    font-weight: 700;
+    font-size: 19px;
+    width: 90%;
+    word-wrap: break-word
+}
+
+.ntv-gallery-slidenum {
+    font-weight: lighter;
+    font-size: 12px;
+    vertical-align: top;
+    padding-top: 3px
+}
+
+.ntv-gallery-detailinfo {
+    width: 100%;
+    padding: 5px 0;
+    font-weight: lighter;
+    font-size: 12px
+}
+
+.ntv-gallery-date {
+    word-wrap: break-word;
+    width: 50%
+}
+
+.ntv-gallery-photocredit {
+    text-align: right;
+    word-wrap: break-word
+}
