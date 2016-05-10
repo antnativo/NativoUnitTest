@@ -1,0 +1,1 @@
+mock.isExternalScriptLoaded = function () { return true; };
