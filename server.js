@@ -24,7 +24,7 @@ server.get(/(.*)/,restify.serveStatic({
   default: 'index.html'
 }));
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8081;
 server.listen(port, function () {
-  console.log("Server Started. Press Ctrl+c to quit server")
+  console.log("Server Started. Press Ctrl+c to quit server: http://localhost:8081 ")
 });
