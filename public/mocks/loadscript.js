@@ -1,1 +1,4 @@
-mock.isExternalScriptLoaded = function () { return true; };
+mock.isExternalScriptLoaded = function () {
+  delete this.isExternalScriptLoaded;
+  return true;
+};

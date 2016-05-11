@@ -3,4 +3,8 @@ _prx.push(['cfg.SetUserPremium']);
 _prx.push(['cfg.Debug'])
 _prx.push(['cfg.SetUserAnonymous']);
 _prx.push(['cfg.SetNoAutoStart']);
-var mock = {};
+var mock = {
+  array: {
+    strings:["hello","bye","see ya","1"]
+  }
+};
