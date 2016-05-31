@@ -11,3 +11,22 @@ QUnit.test("_pr : AddScript() : Add External JS File", function (assert) {
     jQuery("script[src='http://localhost:8081/mocks/loadscript.js']").parent()[0].removeChild(jQuery("script[src='http://localhost:8081/mocks/loadscript.js']")[0]);    done();
   },500);
 });
+QUnit.test("_pr : getTopWindow() : Create iFrame and determine if the Top Window can be reached within the iFrame Window", function (assert) {
+  var done = assert.async()
+  var iframeTest = document.createElement("iframe");
+  iframeTest.id = "getTopWindow";
+  iframeTest.style.display = "none";
+  var localPR = _pr;
+  var global = window;
+  iframeTest.onload = function (event) {
+    var window = event.target.contentWindow;
+    if (event.target.contentWindow != window.top) {
+      window._pr = localPR.bind(window);
+      var topWindow = new window._pr().getTopWindow();
+      assert.equal(topWindow, window.top, "The window returned from wihin iframe should equal top window");
+      assert.notEqual(topWindow,window, "The window returned from wihin iframe should not be equal iframe window");
+    }
+    done();
+  }
+  document.body.appendChild(iframeTest);
+})
