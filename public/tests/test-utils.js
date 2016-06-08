@@ -15,3 +15,21 @@ QUnit.test("ntv.Utils : getElementOffset()", function (assert) {
   assert.equal(dimensions.height, 200, "Node width should be 200");
   jQuery("#testOffset").remove()
 });
+QUnit.test("ntv.Utils : consts property and its properties should be constant", function (assert) {
+  ntv.Util.consts = "FAILED!";
+  assert.notEqual(ntv.Util.consts, "FAILED!", "The consts object should be immutable");
+  
+  if (typeof ntv.Util.consts != "string") { 
+    console.log( ntv.Util.consts.DOMAIN, Object.keys( ntv.Util.consts.DOMAIN))
+    for (var key in ntv.Util.consts) { 
+      ntv.Util.consts[key] = "FAILED!";
+      console.log(ntv.Util.consts[key])
+        assert.notEqual(ntv.Util.consts[key],  "FAILED!", "This Property: " +key +  " should be immutable");
+    }
+  }
+
+  if (Object.seal) { 
+    ntv.Util.consts.failed = true;
+    assert.equal(ntv.Util.consts.failed,  undefined, "A property should not be added to the consts if Object.seal is available");
+  }
+ })
