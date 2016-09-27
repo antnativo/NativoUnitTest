@@ -1,9 +1,11 @@
-QUnit.test("_pr : PostRelease Added to Global Object", function(assert){
-  assert.ok(typeof PostRelease == "object",  "PostRelease is added to window")
+QUnit.test("_pr : PostRelease Added to Global Object", function (assert) {
+  if (window._pr)
+    ntv.PostRelease = new _pr();  
+  assert.ok(typeof ntv.PostRelease == "object",  "PostRelease is added to window")
 });
 QUnit.test("_pr : AddScript() : Add External JS File", function (assert) {
   var done = assert.async();
-  new _pr().AddScript("localhost:8081/mocks/loadscript.js");
+  new (window._pr || ntv.Core._pr)().AddScript("localhost:8081/mocks/loadscript.js");
   assert.equal(jQuery("script[src='http://localhost:8081/mocks/loadscript.js']").length, 1, "JavaScript Tag is Added to Document");
   assert.ok(jQuery("script[src='http://localhost:8081/mocks/loadscript.js']").parent()[0].isSameNode(jQuery("head")[0]), "JavaScript Tag is Added to Head");
   setTimeout(function(){
@@ -16,7 +18,7 @@ QUnit.test("_pr : getTopWindow() : Create iFrame and determine if the Top Window
   var iframeTest = document.createElement("iframe");
   iframeTest.id = "getTopWindow";
   iframeTest.style.display = "none";
-  var localPR = _pr;
+  var localPR = (window._pr || ntv.Core._pr);
   var global = window;
   iframeTest.onload = function (event) {
     var window = event.target.contentWindow;
